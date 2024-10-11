@@ -1,5 +1,5 @@
 import sys
-from app.commands import Command
+from App.Commands import Add
 
 
 class AddCommand(Command):
