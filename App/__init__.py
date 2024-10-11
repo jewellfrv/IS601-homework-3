@@ -1,8 +1,8 @@
-from app.Commands import CommandHandler
-from app.Commands.Add import AddCommand
-from app.Commands.Subtract import SubtractCommand
-from app.Commands.Multiply import MultiplyCommand
-from app.Commands.Divide import DivideCommand
+from App.Commands import CommandHandler
+from App.Commands.Add import AddCommand
+from App.Commands.Subtract import SubtractCommand
+from App.Commands.Multiply import MultiplyCommand
+from App.Commands.Divide import DivideCommand
 
 
 class App:
