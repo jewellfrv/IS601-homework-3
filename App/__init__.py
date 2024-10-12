@@ -5,18 +5,17 @@ from App.Commands.Multiply import MultiplyCommand
 from App.Commands.Divide import DivideCommand
 
 
-class App:
-    def __init__(self): # Constructor
-        self.command_handler = CommandHandler()
-
-
-    def start(self):
-        # Register commands here
-        self.command_handler.register_command("Add", AddCommand())
-        self.command_handler.register_command("Subtract", SubtractCommand())
-        self.command_handler.register_command("Multiply", MultiplyCommand())
-        self.command_handler.register_command("Divide", DivideCommand())
-        
-        print("Type 'Add' to Add")
-        while True:  #REPL
-            self.command_handler.execute_command(input(">>> ").strip())
+def start(self):
+    # Register commands here (pass class references, not instances)
+    self.command_handler.register_command("Add", AddCommand)
+    self.command_handler.register_command("Subtract", SubtractCommand)
+    self.command_handler.register_command("Multiply", MultiplyCommand)
+    self.command_handler.register_command("Divide", DivideCommand)
+    
+    print("Type 'Add' to Add")
+    
+    while True:  # REPL
+        command_name = input(">>> ").strip()
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+        self.command_handler.execute_command(command_name, a, b)
