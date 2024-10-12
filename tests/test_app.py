@@ -1,6 +1,6 @@
 import pytest
 from App import Commands 
-import App
+from App import App
 
 
 
