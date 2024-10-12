@@ -1,17 +1,31 @@
+import pkgutil
+import importlib
 from App.Commands import CommandHandler
-from App.Commands.Add import AddCommand
-from App.Commands.Subtract import SubtractCommand
-from App.Commands.Multiply import MultiplyCommand
-from App.Commands.Divide import DivideCommand
+from App.Commands import Command 
 
 
+class App:
+    def __init__(self): # Constructor
+        self.command_handler = CommandHandler()
+
+    def load_plugins(self):
+        # Dynamically load all plugins in the plugins directory
+        plugins_package = 'app.plugins'
+        for _, plugin_name, is_pkg in pkgutil.iter_modules([plugins_package.replace('.', '/')]):
+            if is_pkg:  # Ensure it's a package
+                plugin_module = importlib.import_module(f'{plugins_package}.{plugin_name}')
+                for item_name in dir(plugin_module):
+                    item = getattr(plugin_module, item_name)
+                    try:
+                        if issubclass(item, (Command)):  # Assuming a BaseCommand class exists
+                            self.command_handler.register_command(plugin_name, item())
+                    except TypeError:
+                        continue  # If item is not a class or unrelated class, just ignore
+    
+    
 def start(self):
     # Register commands here (pass class references, not instances)
-    self.command_handler.register_command("Add", AddCommand)
-    self.command_handler.register_command("Subtract", SubtractCommand)
-    self.command_handler.register_command("Multiply", MultiplyCommand)
-    self.command_handler.register_command("Divide", DivideCommand)
-    
+    self.load_plugins()
     print("Type 'Add' to Add")
     
     while True:  # REPL
