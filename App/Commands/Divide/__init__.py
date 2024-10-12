@@ -2,14 +2,12 @@ import sys
 from App.Commands import Command
 
 
-class DivideCommand(Command):
+class DivideCommand:
     def __init__(self, a: float, b: float):
         self.a = a
         self.b = b
 
-    def execute(self):
+    def execute(self) -> float:
         if self.b == 0:
-            print("Error: Division by zero is not allowed.")
-        else:
-            result = self.a / self.b
-            print(f"The result of dividing {self.a} by {self.b} is {result}")
+            raise ValueError("Cannot divide by zero")
+        return self.a / self.b
