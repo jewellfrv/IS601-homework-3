@@ -1,9 +1,9 @@
 import pytest
 from App import Commands 
-from App.Commands.Add import AddCommand
-from App.Commands.Subtract import SubtractCommand
-from App.Commands.Multiply import MultiplyCommand
-from App.Commands.Divide import DivideCommand
+from App.Plugins.Add import AddCommand
+from App.Plugins.Subtract import SubtractCommand
+from App.Plugins.Multiply import MultiplyCommand
+from App.Plugins.Divide import DivideCommand
 
 def test_Add_command(capfd):
     command = AddCommand(4, 5)
